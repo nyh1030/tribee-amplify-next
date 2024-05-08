@@ -8,7 +8,10 @@ import {Amplify} from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import {Authenticator} from '@aws-amplify/ui-react'
+import { cognitoUserPoolsTokenProvider } from 'aws-amplify/auth/cognito';
+import { defaultStorage } from 'aws-amplify/utils';
 
+cognitoUserPoolsTokenProvider.setKeyValueStorage(defaultStorage);
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
@@ -38,10 +41,10 @@ export default function App() {
     }
 
     return (
-        <Authenticator>
+        <Authenticator socialProviders={['google']}>
             {({signOut, user}) => (
                 <main>
-                    <h1>My todos</h1>
+                    <h1>Hello {user ? user.username : 'Guest'}, My todos</h1>
                     <button onClick={createTodo}>+ new</button>
                     <ul>
                         {todos.map((todo) => (
