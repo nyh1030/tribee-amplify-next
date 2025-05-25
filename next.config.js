@@ -7,7 +7,12 @@ const nextConfig = {
     NEXT_PUBLIC_API_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT,
   },
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
   webpack: (config, { isServer, dev }) => {
     if (!dev) {
@@ -17,6 +22,10 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
+  experimental: {
+    outputFileTracingRoot: undefined,
+  },
 }
 
 module.exports = nextConfig
