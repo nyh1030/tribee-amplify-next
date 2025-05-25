@@ -9,6 +9,14 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
+  webpack: (config, { isServer, dev }) => {
+    if (!dev) {
+      config.resolve.alias['@parcel/watcher'] = false;
+    }
+    return config;
+  },
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
 module.exports = nextConfig
