@@ -1,3 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply h-full;
+  }
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .container {
+    @apply w-full max-w-3xl mx-auto px-4;
+  }
+  
+  .section {
+    @apply mb-8 bg-white rounded-xl shadow-sm p-6 max-w-xl w-full mx-auto text-center;
+  }
+  
+  .section-title {
+    @apply text-xl font-semibold text-gray-900 mb-4 text-center;
+  }
+  
+  .nav-item {
+    @apply flex flex-col items-center text-gray-600 text-sm p-2 rounded-lg transition-colors;
+  }
+  
+  .nav-item.active {
+    @apply text-primary bg-primary bg-opacity-10;
+  }
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
